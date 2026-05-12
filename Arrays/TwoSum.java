@@ -1,11 +1,6 @@
 /*
 1. Two Sum
-Solved
-Easy
-Topics
-premium lock icon
-Companies
-Hint
+
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -43,12 +38,27 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 import java.util.*;
 
 class TwoSum {
+    //Time complexity : O(n^2) Space Complexity : O(1) Brute Force Approach
     public int[] twoSum(int[] nums, int target) {
         int n = nums.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (nums[i] + nums[j] == target) return new int[]{i, j};
             }
+        }
+        return new int[]{};
+    }
+
+    //Optimal Approach Using HashMap Time complexity : O(n) and Space complexity : O(n)
+    public int[] twoSumOptimalApproach(int[] nums, int target) {
+        int n = nums.length;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
         }
         return new int[]{};
     }
@@ -67,7 +77,7 @@ class TwoSum {
         int target = sc.nextInt();
         TwoSum obj = new TwoSum();
 
-        int[] result = obj.twoSum(nums, target);
+        int[] result = obj.twoSumOptimalApproach(nums, target);
         System.out.println("Indices are: " + result[0] + " " + result[1]);
 
     }
