@@ -79,7 +79,7 @@ class TwoSum {
 
         int[] result = obj.twoSumOptimalApproach(nums, target);
         System.out.println("Indices are: " + result[0] + " " + result[1]);
-
+        sc.close();
     }
 
 }
